@@ -56,7 +56,7 @@ class DB_TEST(Resource):
 class Db_Create(Resource):
 	def post(self):
 		try:
-			# db.create_all()  # REACTIVATE by removing comment #
+			db.create_all()  # REACTIVATE by removing comment #
 			return {'message': 'REACTIVATE FOR COMMAND'}, 522
 		except Exception as e:
 			return {'server_error': str(e)}, 522
