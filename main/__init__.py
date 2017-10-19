@@ -1,8 +1,7 @@
 import os
 from flask import Flask
 from flask_restplus import Resource, Api
-import models
-from models import *
+from .models import *
 
 # --------------- Namespace imports ----------------
 from .users import users_api
