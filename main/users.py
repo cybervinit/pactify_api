@@ -37,7 +37,7 @@ class SingleUser(Resource):
 			return {'server_error': str(e)}, 522
 
 	@users_api.expect(new_user_fields)
-	def get(self):
+	def post(self):
 		try:
 			args = one_user_post_parser.parse_args()
 			person = User(args['username'], args['email'])
