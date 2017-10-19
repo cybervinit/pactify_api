@@ -36,13 +36,20 @@ class SingleUser(Resource):
 		except Exception as e:
 			return {'server_error': str(e)}, 522
 
+@users_api.route('/')
+class PostSingleUser(Resource):
+	
 	@users_api.expect(new_user_fields)
 	def post(self):
 		try:
 			args = one_user_post_parser.parse_args()
 			person = User(args['username'], args['email'])
+			db.session.add(person)
+			db.session.commit()
+			return {'message': 'success'}, 222
 		except Exception as e:
 			raise e
+			return {'server_error', str(e)}, 522
 
 
 
