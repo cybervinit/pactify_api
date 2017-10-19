@@ -1,6 +1,5 @@
 from flask_restplus import Namespace, Resource, fields, reqparse
-import models
-from models import db, User
+from .models import db, User
 
 
 users_api = Namespace('users', description="User operations")

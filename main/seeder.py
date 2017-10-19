@@ -1,6 +1,5 @@
 from flask_restplus import Namespace, Resource, fields, reqparse
-import models
-from models import *
+from .models import *
 
 seeds_api = Namespace('seeds', description="Seed operations")
 

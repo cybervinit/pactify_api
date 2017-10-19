@@ -1,6 +1,5 @@
 from flask_restplus import Namespace, Resource, fields, reqparse
-import models
-from models import db, Pact, Condition
+from .models import db, Pact, Condition
 
 conditions_api = Namespace('conditions', description='Condition operations')
 
