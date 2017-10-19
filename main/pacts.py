@@ -1,4 +1,5 @@
 from flask_restplus import Namespace, Resource, fields, reqparse
+import models
 from models import db, Pact, Pact_User
 
 
