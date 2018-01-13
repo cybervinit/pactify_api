@@ -4,8 +4,12 @@ from flask_restplus import Resource, Api
 from .models import *
 import bcrypt
 from .usageModels.session_client import sess
+from werkzeug.exceptions import BadRequest
 
 import redis
+
+# --------------- Custom Exception import ------------\
+from .throw import throw
 
 # --------------- Namespace imports ----------------
 from .users import users_api
@@ -34,10 +38,11 @@ api.add_namespace(pacts_api, path=baseUrl+'pacts')   # PACTS
 api.add_namespace(conditions_api, path=baseUrl+'conditions')   # CONDITIONS
 
 
+
 @api.route(baseUrl+'check')
 class Check(Resource):
 	def get(self):
-
+		throw("oh awh ohhh oha wasda", 423)
 		return {'message': str(var) }, 200
 
 

@@ -2,6 +2,7 @@ from flask_restplus import Namespace, Resource, fields, reqparse
 from .models import db, User
 import bcrypt
 from .usageModels.session_client import sess
+from .invalid_usage import InvalidUsage
 
 users_api = Namespace('users', description="User operations")
 
@@ -57,6 +58,9 @@ class PostSingleUser(Resource):
 		try:
 			args = one_user_post_parser.parse_args()
 			self.makeUser(args)
+			sessID = sess.get(username)
+			if (sessID):
+				return {''}
 			return {'message': 'success'}, 222
 		except Exception as e:
 			# raise e
@@ -85,6 +89,7 @@ class Login(Resource):
 
 	@users_api.expect(login_fields)
 	def post(self):
+		# raise InvalidUsage('some error caught')
 		try:
 			args = one_user_post_parser.parse_args()
 			loginSuccess = self.getLoginSuccessful(args)
