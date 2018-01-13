@@ -2,6 +2,10 @@ import os
 from flask import Flask
 from flask_restplus import Resource, Api
 from .models import *
+import bcrypt
+from .usageModels.session_client import sess
+
+import redis
 
 # --------------- Namespace imports ----------------
 from .users import users_api
@@ -22,11 +26,19 @@ db.init_app(app)
 baseUrl = '/v1/'
 
 
+
 # ~~~~~~~~~~~~~~~~~~~~~~~~~~Route setup ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 api.add_namespace(seeds_api, path=baseUrl+'seeds')   # SEEDS
 api.add_namespace(users_api, path=baseUrl+'users')   # USERS
 api.add_namespace(pacts_api, path=baseUrl+'pacts')   # PACTS
 api.add_namespace(conditions_api, path=baseUrl+'conditions')   # CONDITIONS
+
+
+@api.route(baseUrl+'check')
+class Check(Resource):
+	def get(self):
+
+		return {'message': str(var) }, 200
 
 
 @api.route(baseUrl+'dbCheck')
@@ -47,9 +59,6 @@ class DB_TEST(Resource):
 			return {'message': 'success'}, 222
 		except Exception as e:
 			return {'server_error': str(e)}, 522
-
-
-
 
 
 @api.route(baseUrl+'createdb')

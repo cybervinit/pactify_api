@@ -53,11 +53,12 @@ class User(BaseModel):
 	id = db.Column(db.Integer, primary_key=True)
 	username = db.Column(db.String(20), nullable=False, unique=True)
 	email = db.Column(db.String(120))
+	passwordHash = db.Column(db.String(120))
 
-
-	def __init__(self, username, email):
+	def __init__(self, username, email, passwordHash=""):
 		self.username = username
 		self.email = email
+		self.passwordHash = passwordHash
 
 
 # Model class for Pacts

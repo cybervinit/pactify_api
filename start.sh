@@ -6,6 +6,7 @@ osascript -e 'tell application "Terminal"
     do script "export FLASK_APP=start.py" in selected tab of the front window
     do script "export FLASK_DEBUG=true" in selected tab of the front window
     do script "export PACTIFY_API_CONFIG_SETTINGS='config_app.DevelopmentConfig'" in selected tab of the front window
+    do script "export SQLALCHEMY_DATABASE_URI='postgresql:///pactifydb'" in selected tab of the front window
     do script "flask run" in selected tab of the front window
     
     delay 1

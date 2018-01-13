@@ -10,7 +10,8 @@ class BaseConfig(object):
 
 class DevelopmentConfig(BaseConfig):
 	basedir = os.path.abspath(os.path.dirname(__file__))
-	SQLALCHEMY_DATABASE_URI = 'postgresql:///' +'pactifydb' #os.environ['DATABASE_URL']
+	  #os.environ['DATABASE_URL']  # postgresql:///pactifydb
+	SQLALCHEMY_DATABASE_URI = "postgresql:///pactifydb"
 	SQLALCHEMY_TRACK_MODIFICATIONS = False
 
 class ProductionConfig(BaseConfig):
