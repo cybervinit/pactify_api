@@ -2,7 +2,6 @@ from flask_restplus import Namespace, Resource, fields, reqparse
 from .models import db, User
 import bcrypt
 from .usageModels.session_client import sess
-from .invalid_usage import InvalidUsage
 
 from .throw import throw
 
