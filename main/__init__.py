@@ -25,6 +25,7 @@ api.title = 'Pactify API'
 api.version = '0.0.1'
 # TODO: Add configuration here
 app.config.from_object(os.getenv('PACTIFY_API_CONFIG_SETTINGS'))
+app.config['SQLALCHEMY_DATABASE_URI'] = os.environ['DATABASE_URL']
 db.init_app(app)
 
 baseUrl = '/v1/'
