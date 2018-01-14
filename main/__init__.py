@@ -43,7 +43,7 @@ api.add_namespace(conditions_api, path=baseUrl+'conditions')   # CONDITIONS
 @api.route(baseUrl+'check')
 class Check(Resource):
 	def get(self):
-		return {'message': str(var) }, 200
+		return {'message': app.config['SQLALCHEMY_DATABASE_URI'] }, 200
 
 
 @api.route(baseUrl+'dbCheck')
