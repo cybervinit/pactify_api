@@ -21,4 +21,3 @@ python-editor==1.0.3
 SQLAlchemy==1.1.14
 virtualenv==15.1.0
 Werkzeug==0.12.1
-xattr==0.6.4
