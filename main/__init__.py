@@ -42,7 +42,6 @@ api.add_namespace(conditions_api, path=baseUrl+'conditions')   # CONDITIONS
 @api.route(baseUrl+'check')
 class Check(Resource):
 	def get(self):
-		throw("oh awh ohhh oha wasda", 423)
 		return {'message': str(var) }, 200
 
 

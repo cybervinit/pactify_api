@@ -14,6 +14,11 @@ class SessionClient:
 	def get(self, username):
 		return self.r.get(username)
 
+	def check(self, username):
+		if (self.r.get(username)):
+			return True
+		return False
+
 
 sess = SessionClient('localhost', 6379) # TODO: change to dynamic set of urls
 

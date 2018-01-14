@@ -12,8 +12,8 @@ pact_seeds = [Pact('vinit buys alia icecream'),
 				Pact('bobby owes samuel $20'),
 				Pact('alia buys vinit lunch')]
 
-condition_seeds = [Condition(1, 'vinit buys alia icecream', 'alia', 'vinitsoni'),
-					Condition(2, 'samuel receives $20 from bobby', 'bobby', 'samuel')]
+condition_seeds = [Condition(1, 'vinit buys alia icecream', 'alia', 'vinitsoni', False),
+					Condition(2, 'samuel receives $20 from bobby', 'bobby', 'samuel', False)]
 
 
 @seeds_api.route('/<string:model>')

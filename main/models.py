@@ -36,10 +36,10 @@ class Pact_User(BaseModel):
 
 	pact_id = db.Column(db.Integer)
 	user_username = db.Column(db.String(20))
-	pact_signed = db.Column(db.Integer, nullable=False)
-	conditions_passed = db.Column(db.Integer, nullable=False)
+	pact_signed = db.Column(db.Boolean, nullable=False)
+	conditions_passed = db.Column(db.Boolean, nullable=False)
 
-	def __init__(self, pact_id, user_username, pact_signed, conditions_passed):
+	def __init__(self, pact_id, user_username, pact_signed=False, conditions_passed=False):
 		self.pact_id = pact_id
 		self.user_username = user_username
 		self.pact_signed = pact_signed
@@ -55,10 +55,18 @@ class User(BaseModel):
 	email = db.Column(db.String(120))
 	passwordHash = db.Column(db.String(120))
 
+	# NEw
+	longestStreak = db.Column(db.Integer, nullable=True) # Streak: number of successful pacts in a row
+	currentStreak = db.Column(db.Integer, nullable=False)
+	standard = db.Column(db.Integer, nullable=False) # 10 is lowest, can come back up to 0
+
 	def __init__(self, username, email, passwordHash=""):
 		self.username = username
 		self.email = email
 		self.passwordHash = passwordHash
+		self.longestStreak = 0
+		self.currentStreak = 0
+		self.standard = 10
 
 
 # Model class for Pacts
@@ -68,10 +76,12 @@ class Pact(BaseModel):
 	id = db.Column(db.Integer, primary_key=True)
 	title = db.Column(db.String(140), nullable=False)
 	status = db.Column(db.Integer, nullable=False) # -1 if failed, 0 if in progress, 1 if passed
+	isPublic = db.Column(db.Boolean, nullable=True)
 
-	def __init__(self, title):
+	def __init__(self, title, isPublic=True):
 		self.title = title
 		self.status = 0
+		self.isPublic = isPublic
 
 
 # Model class for Conditions
@@ -83,10 +93,14 @@ class Condition(BaseModel):
 	condition = db.Column(db.String(140), nullable=False)
 	doer_username = db.Column(db.String(20), nullable=False)
 	issuer_username = db.Column(db.String(20), nullable=False)
+	status = db.Column(db.Integer, nullable=False) # -1 if failed, 0 if in progress, 1 if passed
 
-	def __init__(self, pact_id, condition, doer_username, issuer_username):
+	def __init__(self, pact_id, condition, doer_username, issuer_username, status):
 		self.pact_id = pact_id
 		self.condition = condition
 		self.doer_username = doer_username
 		self.issuer_username = issuer_username
+		self.status = status
+
+
 		
